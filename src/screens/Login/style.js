@@ -35,6 +35,7 @@ const styles = () => {
       right: Sizes.size60 * -1,
     },
     input: {
+      fontFamily: 'BaiJamjuree-Bold',
       marginTop: Sizes.size20,
       width: Sizes.size313,
       height: Sizes.size50,

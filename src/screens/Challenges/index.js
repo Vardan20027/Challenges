@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  FlatList,
-  Image,
-  SectionList,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, SectionList, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './style';
 import moment from 'moment';
 import SearchIcon from '../../assets/icons/searchIcon';
@@ -149,7 +142,12 @@ function ChallengeScreen(props) {
               marginTop: Sizes.size20,
             }}>
             <View style={{position: 'absolute', left: 0}}>
-              <LocatIcon />
+              <LocatIcon
+                iconWidth={Sizes.size18}
+                iconHeight={Sizes.size18}
+                iconColor1={'#7a7a7a'}
+                iconColor2={'#7a7a7a'}
+              />
             </View>
 
             <Text style={flatTime}>{item.location}</Text>

@@ -1,15 +1,15 @@
-import React, {useMemo, useState} from 'react';
+import React, {useState} from 'react';
 import {Image, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {styles} from './style';
 import {Sizes} from '../../assets/RootStyle';
-import PlusIcon from '../../assets/icons/plusIcon';
 import DatePicker from 'react-native-date-picker';
+import moment from 'moment';
 
 function LoginScreen({navigation}, props) {
   const {container, text, text2, touchable, plus, input, button, butText} =
     styles();
-  const [open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
   const handleConfirm = date => {
     setOpen(false);
     setDate(date);
@@ -41,14 +41,15 @@ function LoginScreen({navigation}, props) {
             position: 'absolute',
             right: Sizes.size5,
           }}>
-          23 Feb 2022
+          {moment(date.toString()).format('DD MMM YYYY')}
         </Text>
       </TouchableOpacity>
+
       <DatePicker
         modal
+        mode={'date'}
         open={open}
         date={date}
-        mode="datetime"
         onConfirm={date => {
           setOpen(false);
           setDate(date);

@@ -1,14 +1,28 @@
-import React from 'react';
+import React, {useRef} from 'react';
+import {Animated} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ChallengeScreen from '../screens/Challenges';
 import ProfileScreen from '../screens/Profile';
 import AddScreen from '../screens/Add';
 import ChallengeIcon from '../assets/icons/challengeIcon';
-import PlusIcon from '../assets/icons/plusIcon';
 import ProfileIcon from '../assets/icons/profileIcon';
-import * as Animatable from 'react-native-animatable';
 
 const Tab = createBottomTabNavigator();
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const mode = useRef(new Animated.Value(0)).current;
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const buttonSize = useRef(new Animated.Value(1)).current;
+const sizeStyle = {
+  transform: [{scale: buttonSize}],
+};
+const handlePress = () => {
+  Animated.timing(buttonSize, {
+    toValue: 1,
+    duration: 100,
+    useNativeDriver: false,
+  }).start();
+};
 const animate1 = {
   0: {scale: 0.5, translateY: 7},
   0.92: {translateY: -34},
@@ -32,6 +46,7 @@ export default function TabNav() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
+        tabBarShowLabel: false,
       }}>
       <Tab.Screen
         name="Challenge"
@@ -41,7 +56,7 @@ export default function TabNav() {
       <Tab.Screen
         name="AddChallenge"
         component={AddScreen}
-        options={{tabBarIcon: ({focused}) => <PlusIcon />}}
+        options={{tabBarIcon: ({focused}) => <AddButton />}}
       />
       <Tab.Screen
         name="Profile"
