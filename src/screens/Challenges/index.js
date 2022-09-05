@@ -164,7 +164,7 @@ function ChallengeScreen(props) {
                 alignItems: 'center',
               }}>
               <View style={{position: 'absolute', left: 0}}>
-                <ClockIcon />
+                <ClockIcon iconWidth={Sizes.size18} iconHeight={Sizes.size18} />
               </View>
 
               <Text style={flatTime}>{item.time}</Text>

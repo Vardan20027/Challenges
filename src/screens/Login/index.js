@@ -10,10 +10,6 @@ function LoginScreen({navigation}, props) {
     styles();
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
-  const handleConfirm = date => {
-    setOpen(false);
-    setDate(date);
-  };
   return (
     <View style={container}>
       <Text style={text}>Hey there!</Text>

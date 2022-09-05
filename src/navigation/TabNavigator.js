@@ -1,28 +1,24 @@
-import React, {useRef} from 'react';
-import {Animated} from 'react-native';
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ChallengeScreen from '../screens/Challenges';
 import ProfileScreen from '../screens/Profile';
 import AddScreen from '../screens/Add';
 import ChallengeIcon from '../assets/icons/challengeIcon';
 import ProfileIcon from '../assets/icons/profileIcon';
+import AddButton from '../components/AddButton/AddButton';
+import {Sizes} from '../assets/RootStyle';
 
 const Tab = createBottomTabNavigator();
-
-// eslint-disable-next-line react-hooks/rules-of-hooks
-const mode = useRef(new Animated.Value(0)).current;
-// eslint-disable-next-line react-hooks/rules-of-hooks
-const buttonSize = useRef(new Animated.Value(1)).current;
-const sizeStyle = {
-  transform: [{scale: buttonSize}],
-};
-const handlePress = () => {
-  Animated.timing(buttonSize, {
-    toValue: 1,
-    duration: 100,
-    useNativeDriver: false,
-  }).start();
-};
+// const sizeStyle = {
+//   transform: [{scale: buttonSize}],
+// };
+// const handlePress = () => {
+//   Animated.timing(buttonSize, {
+//     toValue: 1,
+//     duration: 100,
+//     useNativeDriver: false,
+//   }).start();
+// };
 const animate1 = {
   0: {scale: 0.5, translateY: 7},
   0.92: {translateY: -34},
@@ -46,22 +42,29 @@ export default function TabNav() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false,
       }}>
       <Tab.Screen
         name="Challenge"
         component={ChallengeScreen}
-        options={{tabBarIcon: ({focused}) => <ChallengeIcon />}}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <ChallengeIcon iconWidth={Sizes.size32} iconHeight={Sizes.size32} />
+          ),
+        }}
       />
       <Tab.Screen
-        name="AddChallenge"
+        name="Add Challenge"
         component={AddScreen}
         options={{tabBarIcon: ({focused}) => <AddButton />}}
       />
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{tabBarIcon: ({focused}) => <ProfileIcon />}}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <ProfileIcon iconWidth={Sizes.size24} iconHeight={Sizes.size24} />
+          ),
+        }}
       />
     </Tab.Navigator>
   );

@@ -3,14 +3,15 @@ import Svg, {G, Path} from 'react-native-svg';
 import {Sizes} from '../RootStyle';
 
 function SvgComponent(props) {
+  const {iconColor} = props;
   return (
     <Svg
-      width={Sizes.size24}
-      height={Sizes.size24}
+      width={Sizes.size32}
+      height={Sizes.size32}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       {...props}>
-      <G fill="#a3acbe" fillRule="evenodd">
+      <G fill={'#a3acbe'} fillRule="evenodd">
         <G transform="translate(-429 -93) translate(427 91) rotate(45 9 24.864)">
           <Path d="M4.916.777a.5.5 0 00-.832-.554l-2 3a.5.5 0 00.832.554l2-3zM6 11.206a.5.5 0 001 0V3.5a.5.5 0 00-1 0v7.706z" />
           <Path d="M3 15.288a.5.5 0 10-1 0V18.5a.5.5 0 101 0v-3.212zM3 3.5a.5.5 0 00-1 0v7.568a.5.5 0 101 0V3.5zm3.084.277a.5.5 0 00.832-.554l-2-3a.5.5 0 00-.832.554l2 3zM6 18.5a.5.5 0 101 0v-3.135a.5.5 0 10-1 0V18.5z" />

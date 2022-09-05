@@ -1,19 +1,50 @@
-import React from 'react';
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import {Switch, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import ArrowBack from '../../assets/icons/arrowBack';
 import {Sizes} from '../../assets/RootStyle';
 import LocatIcon from '../../assets/icons/locatIcon';
 import ArrowRight from '../../assets/icons/arrowRight';
+import ClockIcon from '../../assets/icons/clockIcon';
+import DatePicker from 'react-native-date-picker';
+import moment from 'moment/moment';
+import {styles} from './style';
+import PlusIcon from '../../assets/icons/plusIcon';
+import CoverImages from '../../components/CoverImages';
 
 function AddScreen({navigation}) {
+  const {
+    container,
+    createTouch,
+    createText,
+    title,
+    input,
+    locatText,
+    location,
+    arrow,
+    content,
+    text,
+    dateView,
+    dateText,
+    coverTitle,
+    coverPlus,
+    ticketsDesc,
+  } = styles();
+  const [date, setDate] = useState(new Date());
+  const [date2, setDate2] = useState(new Date());
+  const [open1, setOpen1] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [enabled, setEnabled] = useState(false);
+  const toggleSwitch = () => {
+    if (enabled) {
+      console.log('disabled');
+    } else {
+      console.log('enabled');
+    }
+    setEnabled(!enabled);
+  };
   return (
     <View>
-      <View
-        style={{
-          flexDirection: 'row',
-          marginVertical: Sizes.size30,
-          alignItems: 'center',
-        }}>
+      <View style={container}>
         <TouchableOpacity
           style={{marginLeft: Sizes.size10}}
           onPress={() => navigation.navigate('Challenge')}>
@@ -21,83 +52,18 @@ function AddScreen({navigation}) {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={{
-            width: Sizes.size120,
-            height: Sizes.size35,
-            position: 'absolute',
-            right: Sizes.size20,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: '#045afd',
-            borderRadius: Sizes.size24,
+          style={createTouch}
+          onPress={() => {
+            navigation.navigate('Challenge');
           }}>
-          <Text
-            style={{
-              fontFamily: 'ArchivoBlack-Regular',
-              fontSize: Sizes.size12,
-              lineHeight: Sizes.size24,
-              color: '#edf2fb',
-            }}>
-            CREATE
-          </Text>
+          <Text style={createText}>CREATE</Text>
         </TouchableOpacity>
       </View>
-      <Text
-        style={{
-          alignSelf: 'center',
-          fontFamily: 'ArchivoBlack-Regular',
-          fontSize: Sizes.size20,
-          lineHeight: Sizes.size24,
-          color: '#343536',
-        }}>
-        New Challenge
-      </Text>
-      <TextInput
-        placeholder={'Challenge Title'}
-        style={{
-          width: Sizes.size350,
-          height: Sizes.size50,
-          backgroundColor: '#F5F5F5',
-          borderRadius: Sizes.size8,
-          paddingLeft: Sizes.size10,
-          marginTop: Sizes.size20,
-          alignSelf: 'center',
-          fontFamily: 'ArchivoBlack-Regular',
-          shadowColor: '#000',
-          shadowOffset: {
-            width: Sizes.size0,
-            height: Sizes.size3,
-          },
-          shadowOpacity: 0.27,
-          shadowRadius: 4.65,
-          elevation: Sizes.size6,
-        }}
-      />
-      <TouchableOpacity
-        style={{
-          width: Sizes.size350,
-          height: Sizes.size50,
-          backgroundColor: '#F5F5F5',
-          borderRadius: Sizes.size8,
-          paddingLeft: Sizes.size10,
-          marginTop: Sizes.size20,
-          alignSelf: 'center',
-          fontFamily: 'ArchivoBlack-Regular',
-          shadowColor: '#000',
-          shadowOffset: {
-            width: Sizes.size0,
-            height: Sizes.size3,
-          },
-          shadowOpacity: 0.27,
-          shadowRadius: 4.65,
-          elevation: Sizes.size6,
-        }}>
+      <Text style={title}>New Challenge</Text>
+      <TextInput placeholder={'Challenge Title'} style={input} />
+      <TouchableOpacity style={input}>
         <View style={{flexDirection: 'row'}}>
-          <View
-            style={{
-              position: 'absolute',
-              top: Sizes.size10,
-            }}>
+          <View style={content}>
             <LocatIcon
               iconWidth={Sizes.size26}
               iconHeight={Sizes.size26}
@@ -106,33 +72,119 @@ function AddScreen({navigation}) {
             />
           </View>
           <View style={{marginLeft: Sizes.size35}}>
-            <Text
-              style={{
-                fontFamily: 'BaiJamjuree-Bold',
-                fontSize: Sizes.size16,
-                color: '#2e2e2e',
-                marginBottom: Sizes.size5 * -1,
-              }}>
-              Gyumri Hatsatun
-            </Text>
-            <Text
-              style={{
-                fontFamily: 'BaiJamjuree-Medium',
-                fontSize: Sizes.size12,
-              }}>
-              Khaghaghutyan oghak 1, Gyumri
-            </Text>
+            <Text style={locatText}>Gyumri Hatsatun</Text>
+            <Text style={location}>Khaghaghutyan oghak 1, Gyumri</Text>
           </View>
-          <View
-            style={{
-              position: 'absolute',
-              right: Sizes.size5,
-              top: Sizes.size12,
-            }}>
+          <View style={arrow}>
             <ArrowRight />
           </View>
         </View>
       </TouchableOpacity>
+      <TouchableOpacity style={input} onPress={() => setOpen1(true)}>
+        <View style={{flexDirection: 'row'}}>
+          <View style={content}>
+            <Text style={text}>From</Text>
+          </View>
+          <View style={dateView}>
+            <ClockIcon iconWidth={Sizes.size32} iconHeight={Sizes.size32} />
+            <Text style={dateText}>
+              {moment(date.toString()).format('MMM DD')}
+            </Text>
+          </View>
+          <View
+            style={[dateView, {marginLeft: Sizes.size20}]}
+            onPress={() => setOpen2(true)}>
+            <ClockIcon iconWidth={Sizes.size32} iconHeight={Sizes.size32} />
+            <Text style={dateText}>
+              {moment(date.toString()).format('HH:mm')}
+            </Text>
+          </View>
+          <View style={arrow}>
+            <ArrowRight />
+          </View>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={input} onPress={() => setOpen2(true)}>
+        <View style={{flexDirection: 'row'}}>
+          <View style={content}>
+            <Text style={text}>To</Text>
+          </View>
+          <View style={dateView}>
+            <ClockIcon iconWidth={Sizes.size32} iconHeight={Sizes.size32} />
+            <Text style={dateText}>
+              {moment(date2.toString()).format('MMM DD')}
+            </Text>
+          </View>
+          <View style={[dateView, {marginLeft: Sizes.size20}]}>
+            <ClockIcon iconWidth={Sizes.size32} iconHeight={Sizes.size32} />
+            <Text style={dateText}>
+              {moment(date2.toString()).format('HH:mm ')}
+            </Text>
+          </View>
+          <View style={arrow}>
+            <ArrowRight />
+          </View>
+          <DatePicker
+            modal
+            mode={'datetime'}
+            open={open1}
+            date={date}
+            onConfirm={date => {
+              setOpen1(false);
+              setDate(date);
+            }}
+            onCancel={() => {
+              setOpen1(false);
+            }}
+          />
+          <DatePicker
+            modal
+            mode={'datetime'}
+            open={open2}
+            date={date2}
+            onConfirm={date2 => {
+              setOpen2(false);
+              setDate2(date2);
+            }}
+            onCancel={() => {
+              setOpen2(false);
+            }}
+          />
+        </View>
+      </TouchableOpacity>
+      <View style={{marginBottom: Sizes.size50}}>
+        <Text style={coverTitle}> Cover image</Text>
+        <View style={{flexDirection: 'row'}}>
+          <TouchableOpacity style={coverPlus}>
+            <PlusIcon />
+          </TouchableOpacity>
+          <View
+            style={{
+              top: Sizes.size30,
+              left: Sizes.size90,
+              width: '100%',
+              marginRight: Sizes.size100,
+              paddingRight: Sizes.size80,
+            }}>
+            <CoverImages />
+          </View>
+        </View>
+      </View>
+      <View style={input}>
+        <View style={{flexDirection: 'row'}}>
+          <View style={{marginLeft: Sizes.size5, marginRight: Sizes.size50}}>
+            <Text style={locatText}>Tickets</Text>
+            <Text style={ticketsDesc}>You can set up price for this event</Text>
+          </View>
+
+          <Switch
+            trackColor={{false: '#acb2c1', true: '#045afd'}}
+            thumbColor={enabled ? '#ffffff' : '#ffffff'}
+            onValueChange={toggleSwitch}
+            value={enabled}
+          />
+        </View>
+      </View>
     </View>
   );
 }

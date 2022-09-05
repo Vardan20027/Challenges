@@ -3,10 +3,11 @@ import Svg, {Path} from 'react-native-svg';
 import {Sizes} from '../RootStyle';
 
 function SvgComponent(props) {
+  const {iconColor} = props;
   return (
     <Svg
-      width={Sizes.size24}
-      height={Sizes.size24}
+      width={Sizes.size32}
+      height={Sizes.size32}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

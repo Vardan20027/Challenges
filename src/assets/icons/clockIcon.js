@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Svg, {Path} from 'react-native-svg';
-import {Sizes} from '../RootStyle';
 
 function SvgComponent(props) {
+  const {iconWidth, iconHeight} = props;
   return (
     <Svg
-      width={Sizes.size18}
-      height={Sizes.size18}
+      width={iconWidth}
+      height={iconHeight}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 612 612"
       xmlSpace="preserve"

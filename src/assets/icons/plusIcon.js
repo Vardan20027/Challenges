@@ -2,8 +2,11 @@ import * as React from 'react';
 import Svg, {Circle, Path} from 'react-native-svg';
 
 function SvgComponent(props) {
+  const {iconWidth, iconHeight, iconColor, iconColor2} = props;
   return (
     <Svg
+      width={iconWidth}
+      height={iconHeight}
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
@@ -11,7 +14,7 @@ function SvgComponent(props) {
       xmlSpace="preserve"
       enableBackground="new 0 0 511.999 511.999"
       {...props}>
-      <Circle cx={255.999} cy={255.999} r={255.999} fill={'#3275ff'} />
+      <Circle cx={255.999} cy={255.999} r={255.999} fill={iconColor} />
       <Path d="M243.999 119.999H267.999V392H243.999z" fill="#fff" />
       <Path d="M119.999 243.999H392V267.999H119.999z" fill="#fff" />
     </Svg>
