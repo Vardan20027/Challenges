@@ -8,10 +8,10 @@ const styles = () => {
       alignItems: 'center',
     },
     image: {
-      marginTop: Sizes.size90,
-      maxWidth: Sizes.size180,
-      maxHeight: Sizes.size180,
-      borderRadius: Sizes.size64,
+      marginTop: Sizes.size70,
+      maxWidth: Sizes.size140,
+      maxHeight: Sizes.size140,
+      borderRadius: Sizes.size50,
     },
     name: {
       fontFamily: 'ArchivoBlack-Regular',
@@ -29,7 +29,7 @@ const styles = () => {
       width: '100%',
       paddingRight: Sizes.size30,
       left: Sizes.size15,
-      marginTop: Sizes.size380,
+      marginTop: Sizes.size320,
     },
     title: {
       fontFamily: 'ArchivoBlack-Regular',

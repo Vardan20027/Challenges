@@ -271,6 +271,7 @@ function ChallengeScreen(props) {
               </Text>
             </View>
           )}
+          showsVerticalScrollIndicator={false}
         />
       </View>
       {open ? (

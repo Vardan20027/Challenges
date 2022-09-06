@@ -1,5 +1,12 @@
 import React from 'react';
-import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  Pressable,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {styles} from './style';
 import {Sizes} from '../../assets/RootStyle';
 import LocatIcon from '../../assets/icons/locatIcon';
@@ -22,7 +29,7 @@ function ProfileScreen(props) {
   } = styles();
   const renderItem = ({item}) => (
     <>
-      <TouchableOpacity style={flatContainer}>
+      <Pressable style={flatContainer}>
         <View style={flatImage}>
           <Image
             source={item.img}
@@ -97,7 +104,7 @@ function ProfileScreen(props) {
             </View>
           </View>
         </View>
-      </TouchableOpacity>
+      </Pressable>
     </>
   );
   return (
@@ -112,7 +119,6 @@ function ProfileScreen(props) {
       <View style={challengeView}>
         <Text style={title}> Challenges</Text>
         <FlatList
-          horizontal
           data={Challenges}
           renderItem={renderItem}
           keyExtractor={item => item.id}
