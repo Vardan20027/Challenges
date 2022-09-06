@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, SectionList, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './style';
 import moment from 'moment';
@@ -6,10 +6,15 @@ import SearchIcon from '../../assets/icons/searchIcon';
 import {Sizes} from '../../assets/RootStyle';
 import ClockIcon from '../../assets/icons/clockIcon';
 import LocatIcon from '../../assets/icons/locatIcon';
+import ChallengeBtSheet from '../../components/BottomSheet/ChallengeBtSheet';
+import GreatBtSheet from '../../components/BottomSheet/GreatBtSheet/GreatBtSheet';
 
 function ChallengeScreen(props) {
   const currentDate = moment().format('DD MMM');
   const tomorrow = moment().add(1, 'days').format('DD MMM');
+  const [open, setOpen] = useState(false);
+  const [great, setGreat] = useState(false);
+  const [active, setActive] = useState({});
   const {
     container,
     text,
@@ -113,9 +118,24 @@ function ChallengeScreen(props) {
       ],
     },
   ];
+  if (open || great) {
+    props.navigation.setOptions({
+      tabBarStyle: {display: 'none'},
+    });
+  }
+  if (!open && !great) {
+    props.navigation.setOptions({
+      tabBarStyle: {display: 'flex'},
+    });
+  }
   const Item = ({item}) => (
     <>
-      <TouchableOpacity style={flatContainer}>
+      <TouchableOpacity
+        style={flatContainer}
+        onPress={() => {
+          setOpen(!open);
+          setActive({...item});
+        }}>
         <View style={flatImage}>
           <Image
             source={item.img}
@@ -253,6 +273,16 @@ function ChallengeScreen(props) {
           )}
         />
       </View>
+      {open ? (
+        <ChallengeBtSheet
+          open={open}
+          setOpen={setOpen}
+          active={active}
+          great={great}
+          setGreat={setGreat}
+        />
+      ) : null}
+      {great ? <GreatBtSheet great={great} setGreat={setGreat} /> : null}
     </View>
   );
 }

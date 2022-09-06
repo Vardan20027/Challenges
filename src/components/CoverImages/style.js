@@ -14,8 +14,8 @@ const styles = () => {
       borderRadius: Sizes.size32,
     },
     image2: {
-      maxWidth: Sizes.size90,
-      maxHeight: Sizes.size90,
+      maxWidth: Sizes.size92,
+      maxHeight: Sizes.size92,
       borderRadius: Sizes.size32,
       borderWidth: Sizes.size3,
       borderColor: 'white',
