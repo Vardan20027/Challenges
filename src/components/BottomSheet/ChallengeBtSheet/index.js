@@ -20,15 +20,25 @@ function ChallengeBtSheet({open, setOpen, active, great, setGreat}) {
     title,
     desc,
     locat,
+    locationView,
     members,
     createTouch,
     createText,
+    timeView,
+    membersText,
   } = styles();
 
   return (
     <GestureHandlerRootView style={page}>
       <View style={container}>
-        <BottomSheet snapPoints={snapPoints} ref={sheetRef} index={0}>
+        <BottomSheet
+          snapPoints={snapPoints}
+          ref={sheetRef}
+          index={0}
+          enablePanDownToClose={true}
+          onClose={() => {
+            setOpen(!open);
+          }}>
           <View style={content}>
             <TouchableOpacity
               style={close}
@@ -48,17 +58,7 @@ function ChallengeBtSheet({open, setOpen, active, great, setGreat}) {
             <Text style={desc}>{active.description}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <View
-              style={{
-                marginLeft: Sizes.size10,
-                marginTop: Sizes.size20,
-                width: Sizes.size180,
-                height: Sizes.size45,
-                alignItems: 'center',
-                backgroundColor: '#ebecec',
-                borderRadius: Sizes.size8,
-                flexDirection: 'row',
-              }}>
+            <View style={locationView}>
               <LocatIcon
                 iconWidth={Sizes.size22}
                 iconHeight={Sizes.size22}
@@ -68,17 +68,7 @@ function ChallengeBtSheet({open, setOpen, active, great, setGreat}) {
               <Text style={locat}>{active.location}</Text>
             </View>
 
-            <View
-              style={{
-                marginLeft: Sizes.size10,
-                marginTop: Sizes.size20,
-                width: Sizes.size90,
-                height: Sizes.size45,
-                alignItems: 'center',
-                backgroundColor: '#ebecec',
-                borderRadius: Sizes.size8,
-                flexDirection: 'row',
-              }}>
+            <View style={timeView}>
               <View style={{marginHorizontal: Sizes.size5}}>
                 <ClockIcon
                   iconWidth={Sizes.size24}
@@ -98,15 +88,7 @@ function ChallengeBtSheet({open, setOpen, active, great, setGreat}) {
                   borderRadius: Sizes.size4,
                 }}
               />
-              <Text
-                style={{
-                  fontFamily: 'BaiJamjuree-Bold',
-                  fontSize: Sizes.size15,
-                  color: '#2e2e2e',
-                  marginLeft: Sizes.size5,
-                }}>
-                {active.members}
-              </Text>
+              <Text style={membersText}>{active.members}</Text>
             </View>
           </View>
           <TouchableOpacity

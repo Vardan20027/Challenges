@@ -101,7 +101,6 @@ const styles = () => {
     coverPlus: {
       width: Sizes.size50,
       height: Sizes.size50,
-      zIndex: 1,
       position: 'absolute',
       backgroundColor: '#333333',
       borderRadius: Sizes.size18,
